@@ -13,5 +13,6 @@ namespace DataAccess.Abstracts
         void Add(Product product);
         void Update(Product product);
         void Delete(Product product);
+        List<Product> GetByCategory(int categoryId);
     }
 }

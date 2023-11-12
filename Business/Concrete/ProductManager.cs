@@ -11,9 +11,9 @@ namespace Business.Concrete
 {
     public class ProductManager : IProductService
     {
-        IProductDal _productDal;
+        IEntityRepository<Product> _productDal;
 
-        public ProductManager(IProductDal productDal)
+        public ProductManager(IEntityRepository<Product> productDal)
         {
             _productDal = productDal;
         }
@@ -21,6 +21,16 @@ namespace Business.Concrete
         public List<Product> GetAll()
         {
             return _productDal.GetAll();
+        }
+
+        public List<Product> GetAllByCategoryId(int id)
+        {
+            return _productDal.GetAll(p => p.CategoryId == id);
+        }
+
+        public List<Product> GetAllByUnitPrice(decimal min, decimal max)
+        {
+            return _productDal.GetAll(p => p.UnitPrice <= max && p.UnitPrice >= min);
         }
     }
 }

@@ -3,6 +3,7 @@ using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,11 +16,11 @@ namespace DataAccess.Concrete.InMemory
         public InMemoryProductDal()
         {
             _products = new List<Product> {
-                new Product { Id = 1, CategoryId = 1, ProductName = "Bardak", UnitPrice = 24, UnitsInStock = 25 },
-                new Product { Id = 2, CategoryId = 1, ProductName = "Kamera", UnitPrice = 500, UnitsInStock = 3 },
-                new Product { Id = 3, CategoryId = 2, ProductName = "Telefon", UnitPrice = 1500, UnitsInStock = 37 },
-                new Product { Id = 4, CategoryId = 2, ProductName = "Klavye", UnitPrice = 150, UnitsInStock = 56 },
-                new Product { Id = 5, CategoryId = 2, ProductName = "Fare", UnitPrice = 85, UnitsInStock = 45 }
+                new Product { ProductID = 1, CategoryId = 1, ProductName = "Bardak", UnitPrice = 24, UnitsInStock = 25 },
+                new Product { ProductID = 2, CategoryId = 1, ProductName = "Kamera", UnitPrice = 500, UnitsInStock = 3 },
+                new Product { ProductID = 3, CategoryId = 2, ProductName = "Telefon", UnitPrice = 1500, UnitsInStock = 37 },
+                new Product { ProductID = 4, CategoryId = 2, ProductName = "Klavye", UnitPrice = 150, UnitsInStock = 56 },
+                new Product { ProductID = 5, CategoryId = 2, ProductName = "Fare", UnitPrice = 85, UnitsInStock = 45 }
             };
         }
 
@@ -32,11 +33,21 @@ namespace DataAccess.Concrete.InMemory
         {
             //Linq - Language Integrated Query
             //Lambda
-            Product productToDelete = _products.SingleOrDefault(p => p.Id == product.Id);
+            Product productToDelete = _products.SingleOrDefault(p => p.ProductID == product.ProductID);
             _products.Remove(productToDelete);
         }
 
-        public List<Product> GetAll()
+        public Product Get(Expression<Func<Product, bool>> filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Product> GetAll(Expression<Func<Product, bool>> filter = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Product> GetAll1()
         {
             return _products;
         }
@@ -48,7 +59,7 @@ namespace DataAccess.Concrete.InMemory
 
         public void Update(Product product)
         {
-            Product productToUpdate = _products.SingleOrDefault(p => p.Id == product.Id);
+            Product productToUpdate = _products.SingleOrDefault(p => p.ProductID == product.ProductID);
             productToUpdate.ProductName = product.ProductName;
             productToUpdate.CategoryId = product.CategoryId;
             productToUpdate.UnitPrice = product.UnitPrice;

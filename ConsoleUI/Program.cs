@@ -21,7 +21,7 @@ ProductManager productManager = new ProductManager(new EfProductDal());
 //{
 //    Console.WriteLine(product.ProductName);
 //}
-foreach (Product product in productManager.GetAllByUnitPrice(20,30))
-{
-    Console.WriteLine(product.ProductName);
-}
+//foreach (Product product in productManager.GetAllByUnitPrice(20,30))
+//{
+//    Console.WriteLine(product.ProductName);
+//}

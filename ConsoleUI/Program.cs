@@ -1,8 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using Business.Concrete;
-using DataAccess.Abstracts;
 using DataAccess.Concrete.EntityFramework;
-using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
 using Entities.DTOs;
 
@@ -15,7 +13,7 @@ static void ProductTest()
 {
     ProductManager productManager = new ProductManager(new EfProductDal());
 
-    foreach (Product product in productManager.GetAll())
+    foreach (Product product in productManager.GetAll().Data)
     {
         Console.Write(product.ProductID + " ");
         Console.Write(product.CategoryId + " ");
@@ -24,11 +22,11 @@ static void ProductTest()
         Console.Write(product.UnitsInStock + " ");
         Console.WriteLine("************************************************");
     }
-    foreach (Product product in productManager.GetAllByCategoryId(2))
+    foreach (Product product in productManager.GetAllByCategoryId(2).Data)
     {
         Console.WriteLine(product.ProductName);
     }
-    foreach (Product product in productManager.GetAllByUnitPrice(20, 30))
+    foreach (Product product in productManager.GetAllByUnitPrice(20, 30).Data)
     {
         Console.WriteLine(product.ProductName);
     }
@@ -37,7 +35,7 @@ static void ProductDetailsTest()
 {
     ProductManager productManager = new ProductManager(new EfProductDal());
 
-    foreach (ProductDetailDTO product in productManager.GetProductDetails())
+    foreach (ProductDetailDTO product in productManager.GetProductDetails().Data)
     {
         Console.Write(product.ProductId + " ");
         Console.Write(product.CategoryName + " ");
@@ -45,11 +43,11 @@ static void ProductDetailsTest()
         Console.Write(product.UnitsInsotck + " ");
         Console.WriteLine("************************************************");
     }
-    foreach (Product product in productManager.GetAllByCategoryId(2))
+    foreach (Product product in productManager.GetAllByCategoryId(2).Data)
     {
         Console.WriteLine(product.ProductName);
     }
-    foreach (Product product in productManager.GetAllByUnitPrice(20, 30))
+    foreach (Product product in productManager.GetAllByUnitPrice(20, 30).Data)
     {
         Console.WriteLine(product.ProductName);
     }

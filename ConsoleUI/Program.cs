@@ -16,7 +16,7 @@ static void ProductTest()
     foreach (Product product in productManager.GetAll().Data)
     {
         Console.Write(product.ProductID + " ");
-        Console.Write(product.CategoryId + " ");
+        Console.Write(product.CategoryID + " ");
         Console.Write(product.ProductName + " ");
         Console.Write(product.UnitPrice + " ");
         Console.Write(product.UnitsInStock + " ");
